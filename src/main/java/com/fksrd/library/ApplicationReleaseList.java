@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ApplicationReleaseList {
 
-    int ApplicationReleaseId;
-    List<ApplicationReleaseOS> ApplicationOs;
+    public int ApplicationReleaseId;
+    public List<ApplicationReleaseOS> ApplicationOs;
     
 }

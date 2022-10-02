@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ApplicationList {
     
-    int Applicationid;
-    List<ApplicationData> ApplicationData;
+    public int Applicationid;
+    public List<ApplicationData> ApplicationData;
 
 }
