@@ -2,39 +2,47 @@ package com.fksrd;
 
 import com.fksrd.library.*;
 import javafx.scene.control.ListView;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javafx.fxml.FXML;
+
+import java.io.IOException;
 
 public class MainPageController {
 
     @FXML
     public ListView<String> listView;
 
-    ApplicationData applicationData;
+    ApplicationList applicationList;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
 
-        String json = FileGet.getData("https://gist.githubusercontent.com/fksrd/ba95cebfda52cfb49bc587c13397732e/raw/e0526ab6808f789c04983ab4dffea79a74539a13/data.json");
+        applicationList = ReadCache.ReadCache();
 
-        JSONObject jsonObject = new JSONObject(json);
+        reloadListView();
 
-        JsonObjectToApplicationDataList jsonObjectToApplicationDataList = new JsonObjectToApplicationDataList(jsonObject);
+    }
 
-        ApplicationList list = jsonObjectToApplicationDataList.applicationList;
+    public void reloadListView() {
 
-        applicationData = list.ApplicationData.get(0);
+        for (int i = 0; i < applicationList.ApplicationData.size(); i++) {
 
-        listView.getItems().add(applicationData.ApplicationName);
+            listView.getItems().add(applicationList.ApplicationData.get(i).ApplicationName);
+
+        }
+
     }
 
     @FXML
-    public void InstallButtonClicked() {
+    public void InstallButtonClicked() throws IOException {
 
-        ApplicationDownload applicationDownload = new ApplicationDownload(applicationData);
+        if (applicationList != null) {
 
+            ApplicationDownload applicationDownload = new ApplicationDownload(applicationList);
+
+            DebFileInstaller.Installer("JD-GUI.deb");
+
+        }
     }
 
 }

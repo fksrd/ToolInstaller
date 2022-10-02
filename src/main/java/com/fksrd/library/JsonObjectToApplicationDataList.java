@@ -48,6 +48,7 @@ public class JsonObjectToApplicationDataList {
                         if (!applicationReleaseWindowsOSJson.isEmpty()) {
 
                             ApplicationReleaseOS applicationReleaseOS = new ApplicationReleaseOS();
+                            applicationReleaseOS.ApplicationOSName = "windows";
                             applicationReleaseOS.ApplicationSetupType = applicationReleaseWindowsOSJson.getString("type");
                             applicationReleaseOS.ApplicationSetupVersion = applicationReleaseWindowsOSJson.getString("version");
                             applicationReleaseOS.ApplicationSetupUrl = new URL(applicationReleaseWindowsOSJson.getString("url"));
@@ -59,14 +60,15 @@ public class JsonObjectToApplicationDataList {
                     }
 
                     try {
-                        JSONObject applicationReleaseLinuxOSJson = applicationReleaseOSDataJson.getJSONObject("macos");
+                        JSONObject applicationReleaseMacOSOSJson = applicationReleaseOSDataJson.getJSONObject("linux");
 
-                        if (applicationReleaseLinuxOSJson.isEmpty()) {
+                        if (!applicationReleaseMacOSOSJson.isEmpty()) {
 
                             ApplicationReleaseOS applicationReleaseOS = new ApplicationReleaseOS();
-                            applicationReleaseOS.ApplicationSetupType = applicationReleaseLinuxOSJson.getString("type");
-                            applicationReleaseOS.ApplicationSetupVersion = applicationReleaseLinuxOSJson.getString("version");
-                            applicationReleaseOS.ApplicationSetupUrl = new URL(applicationReleaseLinuxOSJson.getString("url"));
+                            applicationReleaseOS.ApplicationOSName = "linux";
+                            applicationReleaseOS.ApplicationSetupType = applicationReleaseMacOSOSJson.getString("type");
+                            applicationReleaseOS.ApplicationSetupVersion = applicationReleaseMacOSOSJson.getString("version");
+                            applicationReleaseOS.ApplicationSetupUrl = new URL(applicationReleaseMacOSOSJson.getString("url"));
 
                             applicationData.applicationReleaseList.ApplicationOs.add(applicationReleaseOS);
                         }
@@ -75,14 +77,15 @@ public class JsonObjectToApplicationDataList {
                     }
 
                     try {
-                        JSONObject applicationReleaseMacOSOSJson = applicationReleaseOSDataJson.getJSONObject("linux");
+                        JSONObject applicationReleaseLinuxOSJson = applicationReleaseOSDataJson.getJSONObject("macos");
 
-                        if (applicationReleaseMacOSOSJson.isEmpty()) {
+                        if (!applicationReleaseLinuxOSJson.isEmpty()) {
 
                             ApplicationReleaseOS applicationReleaseOS = new ApplicationReleaseOS();
-                            applicationReleaseOS.ApplicationSetupType = applicationReleaseMacOSOSJson.getString("type");
-                            applicationReleaseOS.ApplicationSetupVersion = applicationReleaseMacOSOSJson.getString("version");
-                            applicationReleaseOS.ApplicationSetupUrl = new URL(applicationReleaseMacOSOSJson.getString("url"));
+                            applicationReleaseOS.ApplicationOSName = "macos";
+                            applicationReleaseOS.ApplicationSetupType = applicationReleaseLinuxOSJson.getString("type");
+                            applicationReleaseOS.ApplicationSetupVersion = applicationReleaseLinuxOSJson.getString("version");
+                            applicationReleaseOS.ApplicationSetupUrl = new URL(applicationReleaseLinuxOSJson.getString("url"));
 
                             applicationData.applicationReleaseList.ApplicationOs.add(applicationReleaseOS);
                         }

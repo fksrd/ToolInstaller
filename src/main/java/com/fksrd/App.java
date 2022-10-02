@@ -1,5 +1,6 @@
 package com.fksrd;
 
+import com.fksrd.library.CacheReload;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,10 +18,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        CacheReload.CacheReload();
+
         scene = new Scene(loadFXML("mainPage"), 640, 480);
         stage.setScene(scene);
         stage.setTitle("Tool Installer");
         stage.show();
+
     }
 
     static void setRoot(String fxml) throws IOException {

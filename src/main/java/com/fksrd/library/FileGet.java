@@ -65,6 +65,7 @@ public class FileGet {
         try {
 
             HttpGet httpGet = new HttpGet(url);
+
             httpGet.addHeader(HttpHeaders.USER_AGENT, "ToolInstaller");
 
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
@@ -73,9 +74,11 @@ public class FileGet {
 
             InputStream inputStream = httpEntity.getContent();
 
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1024]);
+            FileOutputStream fileOutputStream = new FileOutputStream(FileName);
 
+            fileOutputStream.write(inputStream.readAllBytes());
 
+            fileOutputStream.close();
 
             closeableHttpResponse.close();
 
