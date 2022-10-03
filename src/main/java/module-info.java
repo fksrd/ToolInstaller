@@ -8,6 +8,7 @@ module com.fksrd {
     requires commons.exec;
     requires commons.logging;
     requires org.apache.commons.io;
+    requires java.desktop;
 
     opens com.fksrd to javafx.fxml;
     exports com.fksrd;

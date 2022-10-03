@@ -6,31 +6,14 @@ import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class DebFileInstaller {
 
-    public static void Installer(String file) throws IOException {
+    public static void Installer(String file)  {
 
-        CommandLine commandLine = new CommandLine("sudo dpkg -i" + file);
 
-        DefaultExecutor defaultExecutor = new DefaultExecutor();
-
-        defaultExecutor.setExitValue(0);
-
-        try {
-            defaultExecutor.execute(commandLine);
-        }
-        catch (ExecuteException e) {
-
-            System.err.println("Execution failed.");
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            System.err.println("permission denied.");
-            e.printStackTrace();
-
-        }
 
     }
 

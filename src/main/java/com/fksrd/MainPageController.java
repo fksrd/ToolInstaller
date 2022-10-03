@@ -4,6 +4,7 @@ import com.fksrd.library.*;
 import javafx.scene.control.ListView;
 
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class MainPageController {
     ApplicationList applicationList;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws Exception {
 
         applicationList = ReadCache.ReadCache();
 
@@ -34,15 +35,24 @@ public class MainPageController {
     }
 
     @FXML
-    public void InstallButtonClicked() throws IOException {
+    public void InstallButtonClicked() {
 
         if (applicationList != null) {
-
-            ApplicationDownload applicationDownload = new ApplicationDownload(applicationList);
 
             DebFileInstaller.Installer("JD-GUI.deb");
 
         }
     }
+
+    @FXML
+    public void DownloadButtonClicked() throws IOException {
+
+        if (applicationList != null) {
+
+            ApplicationDownload applicationDownload = new ApplicationDownload(applicationList);
+
+        }
+    }
+
 
 }
